@@ -8,10 +8,8 @@ class AvlTree {
       else insert(root, d);
     }
 
-    void printHeight() {
-      std::cout<<std::endl;
-      std::cout<<height(root);
-      std::cout<<std::endl;
+    unsigned height() {
+      return height(root);
     }
 
     void print() const { print(root); }
@@ -37,7 +35,7 @@ class AvlTree {
 
     void rotate_left(AvlNode* &node){
       AvlNode *temp = node->right;
-      node->right = temp->right;
+      node->right = temp->left;
       temp->left = node;
       node = temp;
     }

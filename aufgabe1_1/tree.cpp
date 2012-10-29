@@ -7,8 +7,8 @@ class Tree {
       else insert(root, d);
     }
 
-    void printHeight() {
-      std::cout<<height(root);
+    unsigned height() const {
+        return height(root);
     }
 
     void print() const { print(root); }

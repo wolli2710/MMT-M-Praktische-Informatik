@@ -15,7 +15,7 @@ class Heap {
 			assert(elements > 0);
 			return data[0];
 		}
-		//void push(double d);
+
 		void push(T d) {
 			assert(elements < size);
 			data[elements++] = d;
@@ -28,7 +28,7 @@ class Heap {
 				idx = pidx;
 			}
 		}
-		//void pop();
+
 		void pop() {
 			assert(elements > 0);
 			data[0] = data[--elements];
@@ -61,7 +61,6 @@ class Heap {
 			elements = x;
 		}
 
-		//void print() const;
 		void print() const{
             for(unsigned i = 0; i < elements; i++){
           	  	std::cout<< data[i] << " ";
