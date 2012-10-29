@@ -1,29 +1,22 @@
-/*
-	Erweitern Sie den Heap aus der Vorlesung mit Hilfe von einem oder mehreren Template-
-	Parametern so, dass beliebige Datentypen verwendet werden k¨onnen. Testen Sie mit
-	zwei Datentypen wobei ein Datentyp eine eigene Klasse sein soll. Welche Anforderungen
-	werden an den Datentyp gestellt? 
-*/
-#include <stdio.h>
 #include <iostream>
-#include <assert.h>
+#include <cassert>
+#include <list>
 
-using namespace std;
-
+template<typename T>
 class Heap {
 	public:
-		Heap(unsigned n) : elements(0), size(n), data(new double[n]) { }
+		Heap(unsigned n) : elements(0), size(n), data(new T[n]) { }
 
 		virtual ~Heap() { delete [] data; }
 		
 		bool empty() const { return elements; }
 		
-		double top() const {
+		T top() const {
 			assert(elements > 0);
 			return data[0];
 		}
 		//void push(double d);
-		void push(double d) {
+		void push(T d) {
 			assert(elements < size);
 			data[elements++] = d;
 			unsigned idx = elements-1;
@@ -56,18 +49,30 @@ class Heap {
 			} while (true);
 		}
 
+		void sort(){
+			T *tempArray = new T[size];
+			unsigned x = elements;
+			for(unsigned i = 0; i < x; i++){
+				tempArray[i] = top();
+				pop();
+			}
+			delete [] data;
+			data = tempArray;
+			elements = x;
+		}
+
 		//void print() const;
 		void print() const{
-          for(unsigned i = 0; i<elements; i++){
-          	cout<<data[i]<<endl;
-          }
-          cout<<endl;
+            for(unsigned i = 0; i < elements; i++){
+          	  	std::cout<< data[i] << " ";
+            }
+          std::cout<<std::endl;
 		}
-		
+
 	private:
 		unsigned elements;
 		unsigned size;
-		double *data;
+		T *data;
 		unsigned left_index(unsigned idx) const { return 2 * idx + 1; }
 		unsigned right_index(unsigned idx) const { return 2 * idx + 2; }
 		unsigned parent_index(unsigned idx) const { return (idx - 1) / 2; }
@@ -77,16 +82,3 @@ class Heap {
 			else return 1;
 		}
 };
-
-
-int main(){
-
-
-	Heap heap (60);
-	heap.push(4.3);
-	heap.push(5.3);
-
-	heap.print();
-
-	return 0;
-}

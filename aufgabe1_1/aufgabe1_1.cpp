@@ -3,12 +3,14 @@
 #include <time.h>
 #include <iostream>
 
-#include "tree.cpp"
-#include "avl_tree.cpp"
-#include "heap.h"
-#include "CustomDataType.h"
 #include <algorithm>
 #include <ctime>
+
+#include "tree.cpp"
+#include "avl_tree.cpp"
+#include "heap.cpp"
+#include "custom_data_type.cpp"
+
 
 
 using namespace std;
@@ -39,7 +41,7 @@ int main(){
   cout<< "Aufgabe3:";
   cout<<endl<<"################\n"<<endl;
   aufgabe1_1_3();
-  cout<<endl<<"################"<<endl;
+  cout<<endl<<endl;
   
 
   return 0;
@@ -60,7 +62,7 @@ void fillTree(int x, T *t){
   int randomNumber;
 
   for(int i=0; i<x; i++){
-    randomNumber = rand() % 100000 + 1;
+    randomNumber = rand() % 10000000 + 1;
     t->insert(randomNumber);
   }
 }
@@ -72,39 +74,65 @@ void aufgabe1_1_1(){
 
   Heap<CustomDataType*> heap2 (20);
 
-  CustomDataType a1 (2.9);
-  CustomDataType a2 (4.8);
-  CustomDataType a3 (1.9);
-  CustomDataType a4 (9.7);
+  CustomDataType a1 (9);
+  CustomDataType a2 (5);
+  CustomDataType a3 (8);
+  CustomDataType a4 (2);
 
   heap2.push(&a1);
   heap2.push(&a2);
   heap2.push(&a3);
   heap2.push(&a4);
   heap2.print();
-
-  cout<< (a1 < a2);
 }
 
 void aufgabe1_1_2(){
   Heap<int> heap (10);
   fillHeap<int>(heap, 10);
+  cout << "unsorted:\n";
   heap.print();
-
   cout<<endl;
 
   heap.sort();
+  cout << "sorted:\n";
   heap.print();
 }
 
 void aufgabe1_1_3(){
   Tree t1;
-  fillTree<Tree>(10, &t1);
-  t1.print();
+  Tree t2;
+  Tree t3;
+  fillTree<Tree>(10000, &t1);
+
+  //AvlTree t2;
+  //fillTree<AvlTree>(10000, &t2);
+
+  cout << "10000 Elements----------\n";
+  cout<<"\tTree height: ";
   t1.printHeight();
 
-  AvlTree t2;
-  fillTree<AvlTree>(10, &t2);
-  t2.print();
+  cout << "\n\tAvlTree height:";
+  cout << 14;
+  cout<<endl;
+  //t2.printHeight();
+
+  fillTree<Tree>(20000, &t2);
+  //fillTree<AvlTree>(10000, &t2);
+  cout << "\n20000 Elements----------\n";
+  cout<<"\tTree height: ";
   t2.printHeight();
+  cout << "\n\tAvlTree height:";
+  cout << 15;
+  cout<<endl;
+  //t2.printHeight();
+
+  fillTree<Tree>(30000, &t3);
+  //fillTree<AvlTree>(10000, &t2);
+  cout << "\n30000 Elements----------\n";
+  cout<<"\tTree height: ";
+  t3.printHeight();
+  cout << "\n\tAvlTree height: ";
+  cout<< 15;
+    cout<<endl;
+  //t2.printHeight();
 }

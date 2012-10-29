@@ -8,9 +8,7 @@ class Tree {
     }
 
     void printHeight() {
-      std::cout<<std::endl;
       std::cout<<height(root);
-      std::cout<<std::endl;
     }
 
     void print() const { print(root); }
