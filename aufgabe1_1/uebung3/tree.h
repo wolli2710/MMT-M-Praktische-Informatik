@@ -1,8 +1,13 @@
+#ifndef TREE_H
+#define TREE_H
+
+
+template <typename T>
 class Tree {
   public:
     Tree() : root(0) {  }
 
-    void insert(double d) {
+    void insert(T d) {
       if (!root) root = new Node(d);
       else insert(root, d);
     }
@@ -15,8 +20,8 @@ class Tree {
 
   private:
     struct Node {
-      Node(double d) : data(d), left(0), right(0) {  }
-      double data;
+      Node(T d) : data(d), left(0), right(0) {  }
+      T data;
       Node *left, *right;
     };
 
@@ -40,3 +45,5 @@ class Tree {
 
     Node *root;
 };
+
+#endif
