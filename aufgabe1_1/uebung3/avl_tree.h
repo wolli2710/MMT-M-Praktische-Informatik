@@ -5,6 +5,13 @@ template<typename T>
 class AvlTree{
 public:
     AvlTree() : root(0) {  }
+    ~AvlTree(){
+      clearNodes();
+    }
+
+    void clearNodes(){
+      clearNodes(root);
+    }
 
     void insert(T d) {
       if (!root) root = new AvlNode(d);
@@ -76,6 +83,13 @@ public:
       print(node->left);
       printf("%.2f (%d)\n", node->data, height(node));
       print(node->right);
+    }
+
+    void clearNodes(AvlNode *node){
+      if (!node) return;
+      clearNodes(node->left);
+      clearNodes(node->right);
+      delete node;
     }
 
     AvlNode *root;

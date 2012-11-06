@@ -20,3 +20,8 @@ clean:
 	rm -f aufgabe1_1_1
 	rm -f aufgabe1_1_2
 	rm -f aufgabe1_1_3
+
+valgrind:
+	valgrind --leak-check=yes ./aufgabe1_1_1
+	valgrind --leak-check=yes ./aufgabe1_1_2
+	valgrind --leak-check=yes ./aufgabe1_1_3

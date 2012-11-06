@@ -6,6 +6,9 @@ template <typename T>
 class Tree {
   public:
     Tree() : root(0) {  }
+    ~Tree(){
+      clearNodes();
+    }
 
     void insert(T d) {
       if (!root) root = new Node(d);
@@ -17,6 +20,7 @@ class Tree {
     }
 
     void print() const { print(root); }
+    void clearNodes(){ clearNodes(root); }
 
   private:
     struct Node {
@@ -41,6 +45,13 @@ class Tree {
       if (!node) node = new Node(d);
       if (d < node->data)insert(node->left, d);
       else if (d > node->data) insert(node->right, d);
+    }
+
+    void clearNodes(Node *node){
+      if(!node) return;
+      clearNodes(node->left);
+      clearNodes(node->right);
+      delete node;
     }
 
     Node *root;
