@@ -1,0 +1,11 @@
+Die Höhenberechnung wird bei jedem insert aufgerufen. Diese funktioniert rekursiv.
+
+Die Komplexität für das insert ist log(n)
+Die Komplexität für die höhenberechnung ist n
+
+Es kommt zur Komplexität n * log(n)
+
+Lösung:
+Zu jedem Node die aktuelle Höhe speichern.
+Bei der insert methode wird zusätzlich ein counter übergeben für die höhe und mit dem Anlegen des Nodes in diesen geschrieben.
+Bei einer Rotation wird zusätzlich zum Umhängen der Nodes die Höhe des Nodes umgeschrieben.
