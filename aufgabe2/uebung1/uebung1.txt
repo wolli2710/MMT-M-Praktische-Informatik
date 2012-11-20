@@ -10,7 +10,7 @@ Jeder dieser Zugriffe hat seine Performancekosten.
 
 b.:
 #von Neumann Architektur:
-Bei der von Neumann Architektur werden Caches für den Code und Caches für Daten Separiert.
+Bei der von Neumann Architektur werden Caches für den Code und Caches für Daten Separiert verwendet.
 
 
 #Was kostet ein Zugriff auf ein Register bzw. auf den Hauptspeicher?
@@ -27,18 +27,22 @@ Eviction ist eine Räumung/Verschiebung der Einträge des Caches. Caches sind st
 
 
 c.:
-Wofür braucht man virtuellen Speicher?
+#Wofür braucht man virtuellen Speicher?
 Virtueller Speicher wird durch die Memory Management Unit (MMU) zur Verfügung gestellt. Die MMU bfindet sich in der CPU und übersetzt mehrstufige Adresseinträge die im virtuellen Speicher (Page Directory) stehen auf physikalische Speicheradressen im Hauptspeicher. Durch den virtuellen Speicher kann man Prozesse unabhängig voneinander laufen lassen. Jeder Prozess hat ein eigenes Page directory.
 
-Warum wird mehrstufige adress translation verwendet?
+#Warum wird mehrstufige adress translation verwendet?
 Um Platz zu sparen. 
 
 d.:
+#Messergebnisse in Millisekunden:
+Code1: 46860 ms
+Code2: 11410 ms
+Code3: 3506  ms
 
 Was versteht man unter locality?
 Es gibt temporal locality und spatial locality. 
 Temporal locality ist die Wiederverwendung von ausgeführtem Code in kurzen Zeitabständen, der deshalb im Cache behalten wird.
-Spatial locality ist die organisierung von ausgeführtem Code in die unterschiedlich schnellen Cache Layer, je nach schätzung wie bald welcher code als nächstes ausgeführt wird.
+Spatial locality ist die organisierung von ausgeführtem Code in die unterschiedlich schnellen Cache Layer, je nach Schätzung wie bald welcher code als nächstes ausgeführt wird.
 
 Was versteht man unter alignment?
 Alignment beschreibt wie Datenstrukturen im Speicher abgelegt werden.

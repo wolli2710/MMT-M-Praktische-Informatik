@@ -1,8 +1,8 @@
 Wo wird Interprozesskommunikation praktisch eingesetzt? Und warum? Was sind die Vorteile?
 
-Unter Interprozesskommunikation versteht man Methoden zum Austausch von Informationen, im engeren Sinn versteht man darunter die Kommunikation zwischen Prozessen auf dem selben Rechner.
+Unter Interprozesskommunikation versteht man Methoden zum Austausch von Informationen, im engeren Sinn versteht man darunter die Kommunikation zwischen Prozessen auf dem selben Rechner. Daten werden über IPC-Schnittstellen zwischen Prozessen ausgetauscht. Praktische beispiele: CMS, Webserver, Datenbanken
 
-
-Vorteil ist ein schneller Datenaustausch unter den Prozessen. Es werden Ressourcen gespart, da die Daten nur einmal im Speicher liegen.
+Vorteil ist ein schneller Datenaustausch unter den Prozessen. Es werden Ressourcen gespart, da die Daten nur einmal im Speicher liegen und Prozesse auf den selben Speicher zugreifen können. 
 
 Man muss sich jedoch selbst um die Synchronisation der Daten kümmern.
+
