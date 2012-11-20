@@ -25,7 +25,7 @@ int main(){
 
   for(i=0; i<N; i++){
     for(j=0; j<N; j++){
-      mul1[i][j] = 0;
+      mul1[i][j] = rand()%10;
       mul2[i][j] = rand()%10;
       res[i][j] = 0;
     }
