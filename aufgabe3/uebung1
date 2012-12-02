@@ -1,0 +1,22 @@
+1. Lesen Sie unmaintainable code (URL: http://mindprod.com/jgloss/unmain.html).
+Was halten Sie davon? Präsentieren Sie 5 wichtige, lehrreiche Hinweise/Fehler/Fallstricke:
+entweder aus dem Artikel (die Ihnen besonders wichtig erscheinen) oder Beispiele
+aus eigener Erfahrung.
+
+
+Da auf der selben Seite noch ein Buch mit dem Titel Anti Patterns: Refactoring Software, Architectures, and Projects in Crisis dürfte es sich um eine scherzartige Behandlung des Themas Software Engineering und Agiler Software Entwicklung handeln.
+
+1. Zuerst ein Rat um Code so schwierig lesbar wie möglich zu schreiben, um Arbeitssicherheit zu genießen und später der kurze Anstoß, dass man Code irgendwann selbst nicht mehr lesen kann.
+
+2. Der Tip Coding Conventions nicht einzuhalten um später eingestellte Programmierer längere Einarbeitungszeiten aufzuzwängen... fail...
+
+3. Refactoring is a most emotionally-satisfying activity... fail... Aus eigener Erfahrung sollte man so früh wie möglich mit dem Refactoring beginnen, um bereits klaren übersichtlichen Code in die Versionskontrolle einzuchecken und nicht Monate später schlecht geschriebenen code verbessern zu müssen. (viel verlorene Zeit, da man diesen Code erst wieder verstehen muß [Keep it simple stupid])
+
+4. Die Fähigkeit Unwartbaren Code zu schreiben durch Variablen und Methoden Benennungen war der erste Amüsante Beitrag. Der Tip ein Buch für Babynamen zu verwenden fällt nicht nur unter die Kathegorie Antipattern sondern auch Antiwitz, ist aber so blöd, dass es schon wieder lustig ist. 
+Gut wäre das finden von Namen, welche auf das Verhalten der Methode/Variable schließen lassen. 
+
+5. Verwende ähnlich aussehende und ähnlich klingende Variablennamen:
+xy_Z, xy__z, _xy_z, _xyz, XY_Z, xY_z, and Xy_z 
+
+6. Never Test: Je größer eine Applikation wird desto wichtiger wird Testen. Bei kleinen Änderungen an Methoden die im gesamten Projekt verwendet werden können Fehler ansonsten erst nach Wochen erkannt werden.
+

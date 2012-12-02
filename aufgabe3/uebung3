@@ -1,0 +1,26 @@
+3. Lesen Sie das libabc README (URL: http://0pointer.de/blog/projects/libabc.
+html). Was halten Sie davon? Präsentieren Sie 5 wichtige, lehrreiche Hinweise. Ist der
+Artikel für die eigene Arbeit relevant? Welche Punkte sind ihnen unklar?
+
+Der Artikel ist über eine sehr spezifische Art von Software - Kernel.
+
+
+1. Auf Threads achten sowie auf deren Locking und Mutexes.
+
+2. Schreiben von gettern und settern für complexe Datenstrukturen.
+
+3. Verwenden von de-facto standardisierten funktionsnamen.
+
+4. Headerfiles nicht mehrfach inkludieren
+#ifndef custom_header.h
+#define custom_header.h
+//header content...
+#endif
+
+5. Function calls with 15 arguments are a bad idea. If you have tons of
+booleans in a function call, then replace them by a flag argument!
+  - Think about the invocation! foo(0, 1, 0, 1, 0, 0, 0, 1) is unreadable!
+    foo(FOO_QUUX|FOO_BAR|FOO_WALDO) much nicer.
+
+
+Es sind eher Algemeine Aussagen für die eigene Arbeit relevant, die C++ spezifischen Aussagen eher weniger und die Kernelspezifischen Aussagen noch etwas weniger.

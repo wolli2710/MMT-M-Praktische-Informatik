@@ -1,0 +1,41 @@
+6. Berechnen Sie unter Annahme von 64-bit Adressen die folgenden Werte für einen 8-fach
+assoziativen 256 KB grossen Cache mit 64 Bytes cache lines:
+
+* Anzahl der Bits für offset, index und tag bits
+	Cache größe in bytes = 256kb * 1024/64 = 4.096
+	offset: ld(64) = 2^6 = 6bit
+	index: 4096 cache lines/8 fach associativ = 512 = 2^9
+	tag: 64 = 64 - 9 - 6 = 49bit
+
+* Anzahl der sets im Caches
+	64/8 = 8
+
+* Anzahl der cache lines im Caches
+	256kb/64bytes = 4.096 cache lines
+
+
+
+
+
+
+	Cache Beispiel:
+
+32-bit Addressraum, 2-fach assoziativer 32kb grosser Cache mit 32 bytes cacheline
+
+
+5- offset bits
+1024 cachelines  
+
+indexes : 1024 /2 (weil 2fach assoziativ) 
+=>  9- indexbets
+32-14 bits für tag  = 18
+
+1024 indices und cacelines
+
+
+set0/set1    0
+set0/set1
+set0/set1
+…
+…
+set0/set1   511
