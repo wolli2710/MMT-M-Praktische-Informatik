@@ -8,10 +8,20 @@ assoziativen 256 KB grossen Cache mit 64 Bytes cache lines:
 	tag: 64 = 64 - 9 - 6 = 49bit
 
 * Anzahl der sets im Caches
-	64/8 = 8
+	(256kb/64bytes) / 8 = 512
+
+	256kb = 8 * 512 * 64bytes
+	Cachegröße = Assoziativität * Sets * Cachelinegrösse
 
 * Anzahl der cache lines im Caches
 	256kb/64bytes = 4.096 cache lines
+
+
+
+
+
+
+
 
 
 
@@ -27,7 +37,7 @@ Unterrichtsbeispiel:
 1024 cachelines  
 
 indexes : 1024 /2 (weil 2fach assoziativ) 
-=>  9- indexbets
+=>  9- indexbits
 32-14 bits für tag  = 18
 
 1024 indices und cacelines
@@ -38,4 +48,4 @@ set0/set1
 set0/set1
 …
 …
-set0/set1   511
+set0/set1   512
