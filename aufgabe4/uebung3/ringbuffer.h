@@ -1,124 +1,127 @@
+/*
+* ringbuffer.h
+*
+* Created on: Dec 13, 2012
+* Author: Torghele
+* Author: Hewer
+* Author: Vogl
+*/
+
+#ifndef RINGBUFFER_H_
+#define RINGBUFFER_H_
+
+#define DEFAULT_SIZE 10
+
 #include <iostream>
+#include "readpolicy.h"
+#include "writepolicy.h"
 
-using namespace std;
-
-template <class T, 
-	typename WritePolicy ,
-	typename ReadPolicy  >
-class RingBuffer:private WritePolicy, private ReadPolicy {
+template <
+    typename T,
+    typename ReadErrorPolicy = ReadErrorPolicyDefaultValue<T>,
+    typename WriteErrorPolicy = WriteErrorPolicyIgnore
+>
+class RingBuffer: private ReadErrorPolicy, private WriteErrorPolicy {
 
 public:
 
-	using WritePolicy::write;
-	using ReadPolicy::read;
+RingBuffer(unsigned n = DEFAULT_SIZE) : size(n), start(0), end(0), currentSize(0) {
+	data = new T[size];
+}
 
-	RingBuffer(unsigned n=10): size(n), start(0), end(0){
-		data = new T[size];
+~RingBuffer() {
+	delete[] data;
+}
+
+RingBuffer(const RingBuffer &o) {
+
+	start = o.start;
+	end = o.end;
+	size = o.size;
+	currentSize = o.currentSize;
+
+	data = new T[size];
+
+	for (int i = 0; i < size; i++) {
+		data[i] = o.data[i];
+	}
+}
+
+RingBuffer& operator=(const RingBuffer &o) {
+	if (this == &o) return *this;
+
+	delete[] data;
+
+	start = o.start;
+	end = o.end;
+	size = o.size;
+	currentSize = o.currentSize;
+
+	data = new T[size];
+
+	for (int i = 0; i < size; i++) {
+		data[i] = o.data[i];
 	}
 
-	~RingBuffer(){
-		delete [] data;
+	return *this;
+
+}
+
+void clear() {
+	start = end = currentSize = 0;
+}
+
+unsigned getSize() {
+	return currentSize;
+}
+
+void increment_tail() {
+	++end;
+	++currentSize;
+	if (end == size) end = 0;
+}
+
+void increment_head(){
+	++start;
+	--currentSize;
+	if (start == size) start = 0;
+}
+
+T read() {
+	if (!currentSize) {
+		return ReadErrorPolicy::HANDLE_ERROR();
+	} else {
+		T value = data[start];
+		increment_head();
+		return value;
 	}
+}
 
-	RingBuffer(const RingBuffer &o){
-		start = o.start;
-		end = o.end;
-		size = o.size;
-		data = new T[size];
+void write(T value) {
+	if (!currentSize) {
+		data[start] = value;
+		end = start;
+		++currentSize;
+	} else if (currentSize != size) {
+		increment_tail();
+		data[end] = value;
+	} else {
 
-		for(int i = 0; i<size; i++){
-			data[i] = o.data[i];
-		}
+		if (WriteErrorPolicy::HANDLE_ERROR()) return;
+		increment_head();
+		increment_tail();
+		data[end] = value;
 	}
+}
 
-	RingBuffer& operator=(const RingBuffer &o){
-		if(this != &o){	
-			delete [] data;
-			start = o.start;
-			end = o.end;
-			size = o.size;
-			data = new T[size];
-
-			for(int i = 0; i<size; i++){
-				data[i] = o.data[i];
-			}
-		}
-		return *this;
-	}
-
-	void moveStart(){
-		(start+1 < size) ? start+=1 : start=0;
-		//TODO handling start == end
-	}
-
-	void moveEnd(){
-		(end+1 < size) ? end+=1 : end=0;
-		//TODO handling start == end
-	}
-
-	unsigned getSize(){
-		return size;
-	}
-
-
-protected:
+private:
 
 	unsigned size;
-	T *data;
+	unsigned currentSize;
 	unsigned start;
 	unsigned end;
+	T *data;
 
 };
 
-
-class ReadExceptionPolicy{
-protected:
-	template<typename T>
-	T readException(RingBuffer<T> *rb){
-		if(rb->start == rb->end){
-			throw "Read Exception";
-		}
-		
-		//moveEnd();
-		//return data[end];
-	}
-};
-
-
-class WriteExceptionPolicy{
-protected:
-	template<typename T>
-	void write(T const &value){
-		//cout << "ok";
-
-		//throw "Ring Buffer Overflow";
-	}
-};
-
-
-class ReadDefaultValuePolicy{
-protected:
-	template<typename T>
-	void read(T const &value){
-		cout<< value;
-	}
-};
-
-
-class WriteOverwritePolicy{
-protected:
-	template<typename T>
-	void write(T const &value){
-		cout<< "ok";
-	}
-};
-
-
-class WriteIgnorePolicy{
-protected:
-	template<typename T>
-	void write(T const &value){
-		cout<< "ok";
-
-	}
-};
+#endif /* RINGBUFFER_H_ */
