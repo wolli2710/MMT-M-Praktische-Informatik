@@ -17,6 +17,15 @@ assoziativen 256 KB grossen Cache mit 64 Bytes cache lines:
 	256kb/64bytes = 4.096 cache lines
 
 
+	4096 Bytes, cache line 32 Bytes,
+	4kb * 1024/32 = 128 Bytes
+	offset: ld(32) = 2^5 = 5bit
+	index: 128 cache lines 
+	tag: 32 = 32 - 5 = 27bit
+	cache lines 4096/32 = 
+
+
+
 
 
 

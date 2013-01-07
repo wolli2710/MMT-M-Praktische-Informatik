@@ -1,0 +1,66 @@
+Welche Bedeutungen hat das Schlüsselwort static in C/C++ bei Klassen und Funktionen?
+Erklären Sie anhand von Beispielen!
+
+
+Bei Klassen kann man durch das Schlüsselwort static vor einem Attribut bewirken, dass sich Instanzen der Klasse den Wert des Attributs teilen.
+Dies ist in anderen Programmiersprachen auch unter dem Begriff Klassenvariabel bekannt.
+
+Vor Methoden bewirkt static, dass die Methode ohne Instanzierung der Klasse aufgerufen werden können solange nur auf statische Attribute der betroffenen Klasse zugegriffen wird.
+
+Beispiel:
+	class SomeObject{
+	public:
+		SomeObject(){
+			object_counter += 1;
+		}
+	private:
+		static unsigned object_counter = 0;
+	};
+	
+
+	class Singleton{
+	public:
+		
+		void create(){
+			static Singleton instance;	
+			return instance;
+		}
+
+	private:
+		Singleton(){};
+		Singleton(const Singleton &o){};
+		Singleton& operator=(const Singleton &o){};
+		~Singleton(){};
+	};
+
+
+
+
+	class Car{
+	public:
+		Car(int s):serial(s){
+		}
+
+		static void printSerial(){
+			std::cout<< serial;
+		}
+
+	private:
+		int serial;
+	};
+
+	main(){
+		Car::printSerial();
+	}
+
+
+
+Funktionen die das Schlüsselwort static davorgestellt haben können nur von anderen Funktionen innerhalb des selben cpp Files aufgerufen werden.
+Für Funktionen die nur innerhalb einer Datei eines Moduls Bedeutung haben.
+Es kommt zu keinen Namenskonflikten und der Compiler kann eventuell besseren Code erzeugen.
+
+Beispiel: 
+	static void print(){
+		std::cout<<"C++";
+	}
+ 
